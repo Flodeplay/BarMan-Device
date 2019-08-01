@@ -21,5 +21,6 @@ class Application:
             loader = DataLoading(self, self.model.username,height=400,width=800)
             loader.pack_propagate(0)
             loader.pack()
+
         return root
 

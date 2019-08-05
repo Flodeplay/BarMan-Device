@@ -1,9 +1,8 @@
 from Main.Modell.connector import Connector
 from Main.Modell.configreader import ConfigReader
-
+import xml.e
 class Model:
     def __init__(self):
-        self.username = "Fritz"
         self.config = ConfigReader
         self.connector = Connector("193101163196977")
         self.__loadcontent()

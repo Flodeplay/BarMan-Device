@@ -43,7 +43,7 @@ class Connector:
 
     def getrecipies(self):
         mycursor = self.conn.cursor()
-        mycursor.execute("SELECT * FROM r_recipe WHERE r_u_id = "+self.key+" Limit 5;")
+        mycursor.execute("SELECT * FROM r_recipe WHERE r_u_id = "+str(self.device.curuser)+" Limit 5;")
         result = mycursor.fetchall()
         recipies = []
         for row in result:

@@ -7,10 +7,11 @@ class Application:
     def __init__(self, name):
         self.name = name
 
+
     def run(self):
         self.model = Model()
-        self.root = self.__init_windows()
-        self.root.mainloop()
+        #self.root = self.__init_windows()
+        #self.root.mainloop()
 
     def __init_windows(self):
         root = tk.Tk()

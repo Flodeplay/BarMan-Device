@@ -16,13 +16,15 @@ class Connector:
               passwd="",
               database="barman"
             )
+            if self.conn and self.conn.is_connected():
+                logging.info("Connection to DB established")
+                self.connected = True
+                self.key = key
+            else:
+                self.connected = False
         except:
+            self.connected = False
             logging.warning("Connection to DB could not be established")
-
-        if self.conn.is_connected():
-            logging.info("Connection to DB established")
-            self.connected = True
-            self.key = key
 
 
     def getDevice(self):
@@ -49,11 +51,6 @@ class Connector:
         for row in result:
             recipies.append(Recipe(row[0], row[1], row[3]))
         return recipies
-    def getthemeMode(self):
-        mycursor = self.conn.cursor()
-        mycursor.execute("SELECT k_theme FROM d_device WHERE k_key = "+self.key+" Limit 1;")
-        result = mycursor.fetchall()
-        return result[0][0]
     def getpumpconfiguration(self):
         mycursor = self.conn.cursor()
         mycursor.execute("SELECT * FROM p_pump WHERE p_device = "+self.key+" ;")

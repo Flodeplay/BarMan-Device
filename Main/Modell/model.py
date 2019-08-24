@@ -1,10 +1,10 @@
 from Main.Modell.connector import Connector
 from Main.Modell.configreader import ConfigReader
-import xml.e
+
 class Model:
     def __init__(self):
-        self.config = ConfigReader
-        self.connector = Connector("193101163196977")
+        self.config = ConfigReader()
+        self.connector = Connector(self.config.getkey())
         self.__loadcontent()
 
     def __loadcontent(self):
@@ -14,8 +14,8 @@ class Model:
             self.profile = self.connector.getrecipies()
             self.pumps = self.connector.getpumpconfiguration()
         else:
-            #todo implement reader
-            self.user = None
-
-
+            self.device = self.config.getDevice()
+            self.user = self.config.getuser()
+            self.profile = self.config.getrecipies()
+            self.pumps = self.config.getpumpconfiguration()
 

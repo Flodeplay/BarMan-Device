@@ -1,5 +1,5 @@
 import tkinter as tk
-from Main.View.MainScreen.Profiles.profile import Profile
+from Main.View.Frames.MainScreen.Profiles.profile import Profile
 
 
 class CenterGrid(tk.Frame):

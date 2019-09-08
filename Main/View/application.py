@@ -1,7 +1,6 @@
 import tkinter as tk
-from Main.View.MainScreen.mainScreen import MainScreen
 from Main.Modell.model import Model
-from Main.View.Startup.dataLoading import  DataLoading
+from Main.View.Frames.Startup.register.register import RegisterScreen
 class Application:
 
     def __init__(self, name):
@@ -19,7 +18,7 @@ class Application:
         root.resizable(0, 0)
         root['bg'] = "#201F1E"
         if(self.model.user):
-            loader = DataLoading(self, self.model.user.name, height=400, width=800)
+            loader = RegisterScreen(self, height=400, width=800)
             loader.pack_propagate(0)
             loader.pack()
 

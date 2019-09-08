@@ -1,7 +1,7 @@
 import tkinter as tk
-from Main.View.MainScreen.top_frame import Topframe
-from Main.View.MainScreen.Profiles.center_grid import CenterGrid
-from Main.View.MainScreen.bottom_frame import BottomFrame
+from Main.View.Frames.MainScreen.top_frame import Topframe
+from Main.View.Frames.MainScreen.Profiles import CenterGrid
+from Main.View.Frames.MainScreen.bottom_frame import BottomFrame
 
 
 class MainScreen(tk.Frame):

@@ -1,5 +1,5 @@
 from Main.Modell.connector import Connector
-from Main.Modell.configreader import ConfigReader
+from Main.Modell.configuration import ConfigReader
 
 class Model:
     def __init__(self):
@@ -11,11 +11,22 @@ class Model:
         if self.connector.connected:
             self.device = self.connector.getDevice()
             self.user = self.connector.getuser()
-            self.profile = self.connector.getrecipies()
+            self.profiles = self.connector.getrecipies()
             self.pumps = self.connector.getpumpconfiguration()
+            #self.updateconfig()
+
         else:
             self.device = self.config.getDevice()
             self.user = self.config.getuser()
             self.profile = self.config.getrecipies()
             self.pumps = self.config.getpumpconfiguration()
 
+    def updateconfig(self):
+            if self.config.getuser() != self.user:
+                self.config.setUser(self.user)
+            if self.config.getrecipies() != self.profiles:
+                #TODO implement Recepies update
+                self.config.setUser(self.user)
+            if self.config.getpumpconfiguration() != self.pumps:
+                #TODO implement Pumps update
+                self.config.setUser(self.user)

@@ -18,8 +18,11 @@ class ConfigReader:
     def getuser(self):
         return User(self.root[1][0].text, self.root[1][1].text)
 
+    def setUser(self, user):
+        return
+
     def getrecipies(self):
-       return
+        return
 
     def getpumpconfiguration(self):
         return

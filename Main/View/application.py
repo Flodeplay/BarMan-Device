@@ -1,6 +1,7 @@
 import tkinter as tk
+from tkinter import ttk
 from Main.Modell.model import Model
-from Main.View.Frames.Startup.register.register import RegisterScreen
+from Main.View.Frames.Startup.startupscreen.startup import StartupScreen
 class Application:
 
     def __init__(self, name):
@@ -18,7 +19,8 @@ class Application:
         root.resizable(0, 0)
         root['bg'] = "#201F1E"
         if(self.model.user):
-            loader = RegisterScreen(self, height=400, width=800)
+            ttk.Style().configure('startup.TFrame', padding=20,  background="#87014F")
+            loader = StartupScreen(root, style="startup.TFrame", height=400, width=800)
             loader.pack_propagate(0)
             loader.pack()
 

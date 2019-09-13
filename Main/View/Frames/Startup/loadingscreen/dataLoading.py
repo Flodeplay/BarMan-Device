@@ -12,7 +12,7 @@ class DataLoading(tk.Frame):
         l['bg'] = self.master['bg']
         l['fg'] = "white"
         l['font'] = "Arial 25"
-        l['justify'] = "leftpanel"
+        l['justify'] = "left"
         l.place(x=400, y=150, anchor="center")
         s = ttk.Style()
         s.theme_use('clam')

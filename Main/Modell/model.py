@@ -20,6 +20,7 @@ class Model:
             self.user = self.config.getuser()
             self.profile = self.config.getrecipies()
             self.pumps = self.config.getpumpconfiguration()
+            self.theme = self.config.getthememode()
 
     def updateconfig(self):
             if self.config.getuser() != self.user:

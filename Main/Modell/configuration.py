@@ -27,3 +27,5 @@ class ConfigReader:
     def getpumpconfiguration(self):
         return
 
+    def getthememode(self):
+        return self.root[0][2].text

@@ -1,6 +1,6 @@
 from Main.Modell.connector import Connector
 from Main.Modell.configuration import ConfigReader
-
+from Main.Modell.Class.cupsize import Cupsize
 class Model:
     def __init__(self):
         self.config = ConfigReader()
@@ -31,3 +31,11 @@ class Model:
             if self.config.getpumpconfiguration() != self.pumps:
                 #TODO implement Pumps update
                 self.config.setUser(self.user)
+    def makedring(self, preset, cupsize):
+        if preset:
+            for pump, amount in preset.items():
+                #TODO implement drink handling, implement method like "processDrink" to acces the gpio ports
+
+
+
+

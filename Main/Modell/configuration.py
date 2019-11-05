@@ -6,26 +6,36 @@ from Main.Modell.Class.device import Device
 
 class ConfigReader:
     def __init__(self):
-        tree = ET.parse('config.xml')
-        self.root = tree.getroot()
+        self.tree = ET.parse('config.xml')
+        self.root = self.tree.getroot()
 
     def getkey(self):
-        return self.root[0][0].text
-
-    def getDevice(self):
-        return
+        return int(self.root.find("key").text)
 
     def getuser(self):
         return User(self.root[1][0].text, self.root[1][1].text)
 
-    def setUser(self, user):
-        return
+    def setuser(self, user):
+        self.root[1][0].text = str(user.id)
+        self.root[1][1].text = user.name
 
     def getrecipies(self):
-        return
+        recipies = []
+        for recipie in self.root.findall('recipie'):
+            profile = Recipe(int(recipie.find('id').text), recipie.find('name').text, recipie.find('preset').text)
+            recipies.append(profile)
+        return recipies
+
+    #def setRecipies(self):
 
     def getpumpconfiguration(self):
-        return
+        pumps = []
+        for pump in self.root.findall('pump'):
+            pumpconfig = Recipe(int(pump.find('id').text),pump.find('name').text,pump.find('amount').text)
+            pumps.append(pumpconfig)
+        return pumps
 
-    def getthememode(self):
-        return self.root[0][2].text
+    def get(self, name):
+        return self.root.find(name).text
+
+

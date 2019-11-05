@@ -2,10 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 
 class InfoPanel(ttk.Frame):
-    def __init__(self, master, **kwargs):
-        self.master = master
-        super().__init__(**kwargs)
-        self.grid_columnconfigure(0, weight=1)
+    def __init__(self, parent, **options):
+        super().__init__(parent, **options)
         self.init_content()
 
     def init_content(self):

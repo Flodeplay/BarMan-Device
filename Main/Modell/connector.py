@@ -40,8 +40,11 @@ class Connector:
     def getuser(self):
         mycursor = self.conn.cursor()
         mycursor.execute("SELECT * FROM u_user WHERE u_id = "+str(self.device.curuser)+" Limit 1;")
-        result = mycursor.fetchone()
-        return User(result[0], result[1])
+        if(mycursor.rowcount == 0):
+            result = mycursor.fetchone()
+            return User(result[0], result[1])
+        else:
+            return None
 
     def getrecipies(self):
         mycursor = self.conn.cursor()

@@ -1,17 +1,17 @@
-import tkinter as tk
+from tkinter import *
+from tkinter import ttk
 
 
-class Topframe(tk.Frame):
-    def __init__(self, master, **kwargs):
-        self.master = master
-        super().__init__(**kwargs)
+class TopFrame(ttk.Frame):
+    def __init__(self, parent, **options):
+        super().__init__(parent, **options)
         self.init_content()
 
     def init_content(self):
-        label = tk.Label(self, text="Barman", width=8, font="Helvetica 20", fg="white")
-        label['bg'] = self['bg']
+        ttk.Style().configure('mainscreen.topframe.TLabel', background="#87014F",font="Helvetica 20", foreground="white")
+        label = ttk.Label(self, text="Barman", width=8,style="mainscreen.topframe.TLabel")
         label.pack(side="left")
-        button = tk.Button(self, height=50, width=5, background="white", text="×")
+        button = Button(self, height=50, width=5, background="#87014F", text="×")
         button.pack(side="right")
 
 

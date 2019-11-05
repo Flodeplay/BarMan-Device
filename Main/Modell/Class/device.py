@@ -3,5 +3,4 @@ class Device:
         self.key = key
         self.name = name
         self.theme = theme
-        self.curuser = curuser
 

@@ -1,23 +1,20 @@
-<?xml version="1.0"?>
 <data>
-    <key>193101163196977</key>
+    <device>
+        <key>193101163196</key>
+        <pin>123456</pin>
+        <userid>1</userid>
+        <userprofile>1</userprofile>
+    </device>
     <user>
         <id>1</id>
-        <name>Manuel</name>
+        <name>Florian</name>
     </user>
-    <recipies>
-        <recipie>
-            <id></id>
-            <name></name>
-            <preset></preset>
-        </recipie>
-    </recipies>
+    <profile>
+        <id>1</id>
+        <name>Basic</name>
+    </profile>
+    <beverages>
+        <beverage><name>Tiquilla</name><capacity>400</capacity><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Osaft</name><amount>100</amount></pump><pump><containerID>3</containerID><name>MangoSaft</name><amount>100</amount></pump><pump><containerID>4</containerID><name>Kaffee</name><amount>100</amount></pump></pumps></beverage><beverage><name>Drink#2</name><capacity>800</capacity><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>200</amount></pump><pump><containerID>2</containerID><name>Osaft</name><amount>200</amount></pump><pump><containerID>3</containerID><name>MangoSaft</name><amount>200</amount></pump><pump><containerID>4</containerID><name>Kaffee</name><amount>200</amount></pump></pumps></beverage></beverages>
     <pumps>
-        <pump>
-            <pump></pump>
-            <name></name>
-            <amount></amount>
-        </pump>
-    </pumps>
+        <pump><name>Kaffee</name><containerID>4</containerID></pump><pump><name>MangoSaft</name><containerID>3</containerID></pump><pump><name>Osaft</name><containerID>2</containerID></pump><pump><name>Wasser</name><containerID>1</containerID></pump></pumps>
 </data>
-

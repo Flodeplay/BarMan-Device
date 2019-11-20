@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 class DataLoading(tk.Frame):
-    def __init__(self, master,name, **kwargs):
+    def __init__(self, master, name, **kwargs):
         self.master = master
         super().__init__(**kwargs)
         self.init_content(name)

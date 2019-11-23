@@ -7,21 +7,18 @@ class Model:
         self.config = ConfigReader()
         self.key = self.config.getkey()
         self.connector = Connector(self.key)
-        self.__loadcontent()
+        self.__load_content()
 
-    def __loadcontent(self):
+    def __load_content(self):
         if self.connector.connected:
-            self.login()
+            self.login_from_db()
         else:
             if self.config.getuser():
-                self.device = self.config.getDevice()
-                self.user = self.config.getuser()
-                self.profile = self.config.getProfile()
-                self.pumps = self.config.getpumpconfiguration()
+                self.login_from_config()
             else:
                 raise Exception("No User Connected with this machine")
 
-    def __updateconfig(self):
+    def __update_config(self):
         if self.config.getuser() != self.user:
             self.config.setuser(self.user)
         if self.config.getbeverages() != self.profile.beverages:
@@ -30,7 +27,13 @@ class Model:
             self.config.setPumpconfiguration(self.pumps)
         self.config.tree.write('config.xml', encoding='UTF-8')
 
-    def login(self):
+    def login_from_config(self):
+        self.device = self.config.getDevice()
+        self.user = self.config.getuser()
+        self.profile = self.config.getProfile()
+        self.pumps = self.config.getpumpconfiguration()
+
+    def login_from_db(self):
         if self.connector.connected:
             self.device = self.connector.getdevice()
             if self.device:
@@ -38,7 +41,7 @@ class Model:
                 if self.user:
                     self.profile = self.connector.getprofile()
                     self.pumps = self.connector.getpumpconfiguration()
-                    self.__updateconfig()
+                    self.__update_config()
                 else:
                     raise Exception("No User Connected with this machine")
             else:
@@ -46,13 +49,16 @@ class Model:
         else:
             raise Exception("Connection to DB could not be Established")
 
-    def makedring(self, preset, cupsize):
-        if preset:
+
+    def calc_ratio(self, beverage, cupsize):
+        relations={}
+        if beverage:
             if cupsize:
-                for pump, amount in preset.items():
-                    # TODO implement drink handling, implement method like "processDrink" to acces the gpio ports
-                    return None
+                for liquid in beverage.pumps:
+                    relation = (int(liquid.amount)/int(beverage.volume))*int(cupsize)
+                    relations[liquid.containerid] = relation
+                return relations
             else:
                 raise Exception("No Cupsize Selected")
         else:
-            raise Exception("No Preset Configuration")
+            raise Exception("No Drink Configuration")

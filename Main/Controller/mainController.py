@@ -50,5 +50,17 @@ class MainController:
         frame.tkraise()
         return frame
 
-    def makedrink(self, beverage):
+    def __init_cupselection(self, beverage):
+        
+
+    def makedrink(self, beverage, cupsize):
         self.__init_progress(beverage)
+        if beverage:
+            if cupsize:
+                ratio = self.calc_ratio(beverage, cupsize)
+                #Todo start thread
+                #Todo eventually move to controller class
+            else:
+                raise Exception("No Cupsize Selected")
+        else:
+            raise Exception("No Preset Configuration")

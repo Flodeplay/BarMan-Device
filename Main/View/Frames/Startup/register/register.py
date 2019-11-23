@@ -5,22 +5,25 @@ from Main.View.Frames.Startup.register.infoPanel import InfoPanel
 
 
 class RegisterScreen(ttk.Frame):
-    def __init__(self, parent, **options):
+    def __init__(self, key, pin, parent, **options):
         super().__init__(parent, **options)
+        self.key = key
+        self.pin = pin
         self.init_content()
 
     def init_content(self):
-        getQrCode("1931011631969","123445")
+        getQrCode(self.key, self.pin)
         s = ttk.Style()
         s.configure('register.left.TFrame', background="#87014F")
         s.configure('register.right.TFrame', background="#201F1E")
         leftpanel = QrcodeFrame(parent=self, width=400, height=400, style="register.left.TFrame")
         leftpanel.pack_propagate(0)
         leftpanel.grid(row=0,column=0)
-        leftpanel = InfoPanel(parent=self, width=400, height=400, padding=20, style="register.right.TFrame")
+        leftpanel = InfoPanel(parent=self, key=self.key, pin=self.pin, width=400, height=400, padding=20, style="register.right.TFrame")
         leftpanel.grid_rowconfigure(0, weight=2)
         leftpanel.grid_columnconfigure(0, weight=2)
         leftpanel.grid_propagate(0)
         leftpanel.grid(row=0,column=1)
+        self.leftpanel = leftpanel
 
 

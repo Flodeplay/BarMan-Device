@@ -14,7 +14,7 @@ class Model:
             self.login()
         else:
             if self.config.getuser():
-                self.device = self.config.getkey()
+                self.device = self.config.getDevice()
                 self.user = self.config.getuser()
                 self.profile = self.config.getProfile()
                 self.pumps = self.config.getpumpconfiguration()
@@ -24,10 +24,10 @@ class Model:
     def __updateconfig(self):
         if self.config.getuser() != self.user:
             self.config.setuser(self.user)
-        # if self.config.getrecipies() != self.profiles:
-        #     #TODO implement Recepies update
-        # if self.config.getpumpconfiguration() != self.pumps:
-        #     #TODO implement Pumps update
+        if self.config.getbeverages() != self.profile.beverages:
+            self.config.setbeverages(self.profile.beverages)
+        if self.config.getpumpconfiguration() != self.pumps:
+            self.config.setPumpconfiguration(self.pumps)
         self.config.tree.write('config.xml', encoding='UTF-8')
 
     def login(self):
@@ -36,8 +36,8 @@ class Model:
             if self.device:
                 self.user = self.connector.getuser()
                 if self.user:
-                    self.getprofile = self.connector.getprofile()
-                    #Todo pump config
+                    self.profile = self.connector.getprofile()
+                    self.pumps = self.connector.getpumpconfiguration()
                     self.__updateconfig()
                 else:
                     raise Exception("No User Connected with this machine")
@@ -46,14 +46,13 @@ class Model:
         else:
             raise Exception("Connection to DB could not be Established")
 
-
-def makedring(self, preset, cupsize):
-    if preset:
-        if cupsize:
-            for pump, amount in preset.items():
-                # TODO implement drink handling, implement method like "processDrink" to acces the gpio ports
-                return None
+    def makedring(self, preset, cupsize):
+        if preset:
+            if cupsize:
+                for pump, amount in preset.items():
+                    # TODO implement drink handling, implement method like "processDrink" to acces the gpio ports
+                    return None
+            else:
+                raise Exception("No Cupsize Selected")
         else:
-            raise Exception("No Cupsize Selected")
-    else:
-        raise Exception("No Preset Configuration")
+            raise Exception("No Preset Configuration")

@@ -1,19 +1,15 @@
-from Main.Model.configuration import ConfigReader
-from Main.Model.Class.user import User
-from Main.Model.Class.pump import Pump
-from Main.Model.connector import Connector
+import tkinter
+from tkinter import ttk
+from Main.View.Frames.Drink.progress.progressbar import ProgressBar
+def setup():
+    root = tkinter.Tk()
+    root.geometry('800x480')
+    ttk.Style().configure('progressbar.TFrame', background="#201F1E")
+    frame = ProgressBar(root, style="progressbar.TFrame", height=400, width=800)
+    frame.grid_propagate(0)
+    frame.grid(row=0, column=0, sticky="nsew")
 
-config = ConfigReader()
-key = config.getkey()
-connector = Connector(key)
-device = connector.getdevice()
-user = connector.getuser()
-profile = connector.getprofile()
-pumps = connector.getpumpconfiguration()
+    frame.tkraise()
+    root.mainloop()
 
-config.setDevice(device)
-config.setuser(user)
-config.setProfile(profile)
-config.setPumpconfiguration(pumps)
-config.setbeverages(profile.beverages)
-config.tree.write('config.xml', encoding='UTF-8')
+setup()

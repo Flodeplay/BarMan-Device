@@ -3,14 +3,22 @@ import tkinter.ttk as ttk
 
 
 class Profile(ttk.Frame):
-    def __init__(self, parent,profile, **options):
+    def __init__(self, parent,beverage, **options):
         super().__init__(parent, **options)
-        self.profile = profile
-        self.init_content()
+        self.init_content(beverage)
+        self.beverage = beverage
 
-    def init_content(self):
+    def init_content(self, beverage):
+        ttk.Style().configure('mainscreen.centerGrid.profile.TLabel', background="#871352", font="Helvetica 20",
+                              foreground="white",justify="center", anchor="center")
+        ttk.Style().configure('mainscreen.centerGrid.profile.small.TLabel', background="#871352", font="Helvetica 12",
+                              foreground="white", justify="center", anchor="center")
+        label = ttk.Label(self, text=beverage.name, style="mainscreen.centerGrid.profile.TLabel")
+        label.grid(row=0, sticky="nsew", pady=(20, 10))
+        ttk.Separator(self).grid(row=1, sticky="nsew",padx=(10, 25), pady=(20, 20))
+        #label = Label(self, text=beverage.name)
+        #label.grid(row=2)
+        #ttk.Separator(self).grid(row=3, sticky="nsew", pady=(20, 10))
+        label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=130)
+        label.grid(row=4, padx=(20, 20))
 
-        canvas = Canvas(self)
-        canvas.grid()
-        canvas.create_oval(5, 25, 195, 215, fill='gray', outline="")
-        canvas.create_text(100,130, text="MK", fill="lightgray", font=("Helvetica", 80), width=200)

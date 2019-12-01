@@ -1,6 +1,7 @@
 from Main.Model.connector import Connector
 from Main.Model.configuration import ConfigReader
-
+import time
+import logging
 
 class Model:
     def __init__(self):
@@ -12,9 +13,11 @@ class Model:
     def __load_content(self):
         if self.connector.connected:
             self.login_from_db()
+            logging.info("Login from DB Complete")
         else:
             if self.config.getuser():
                 self.login_from_config()
+                logging.info("Login from XML Complete")
             else:
                 raise Exception("No User Connected with this machine")
 
@@ -49,16 +52,23 @@ class Model:
         else:
             raise Exception("Connection to DB could not be Established")
 
-
     def calc_ratio(self, beverage, cupsize):
-        relations={}
+        relations = {}
         if beverage:
             if cupsize:
                 for liquid in beverage.pumps:
-                    relation = (int(liquid.amount)/int(beverage.volume))*int(cupsize)
+                    relation = (int(liquid.amount) / int(beverage.volume)) * int(cupsize)
                     relations[liquid.containerid] = relation
                 return relations
             else:
                 raise Exception("No Cupsize Selected")
         else:
             raise Exception("No Drink Configuration")
+
+    def makedrink(self, beverage, progressscreen, callback, args):
+        progress = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+        for i in progress:
+            progressscreen.setprogress(i)
+            time.sleep(0.5)
+        # todo implement GPIO Ports
+        callback(args,beverage)

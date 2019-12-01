@@ -1,8 +1,7 @@
 from tkinter import *
-import tkinter as tk
 from tkinter import ttk
 from Main.View.Frames.MainScreen.top_frame import TopFrame
-from Main.View.Frames.MainScreen.Profiles.center_grid import CenterGrid
+from Main.View.Frames.MainScreen.center_grid import CenterGrid
 from Main.View.Frames.MainScreen.bottom_frame import BottomFrame
 
 
@@ -31,7 +30,7 @@ class MainScreen(ttk.Frame):
         ttk.Style().configure('mainscreen.centerGrid.TFrame', background="#201F1E")
         frame_left = CenterGrid(canvas, beverages, style='mainscreen.centerGrid.TFrame')
         self.centergrid = frame_left
-        if (len(beverages) * (160 + 40) + 20) > 800:
+        if (len(beverages) * (180 + 40) + 20) > 800:
             vertscroll = Scrollbar(canvas, orient='horizontal', command=canvas.xview())
             canvas.configure(xscrollcommand=vertscroll.set)
 
@@ -39,7 +38,7 @@ class MainScreen(ttk.Frame):
                 canvas.configure(scrollregion=canvas.bbox("all"))
 
             def chat_width(event, canvas_frame):
-                canvas.itemconfig(canvas_frame, width=len(beverages) * (160 + 40) + 20)
+                canvas.itemconfig(canvas_frame, width=len(beverages) * (180 + 40) + 20)
 
             def mouse_scroll(event, canvas):
                 if event.delta:

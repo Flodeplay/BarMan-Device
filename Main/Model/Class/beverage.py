@@ -8,5 +8,5 @@ class Beverage:
         ingredients = []
         for ingredient in self.pumps:
             ingredients.append(ingredient.name)
-        return ",".join(ingredients)
+        return ", ".join(ingredients)
 

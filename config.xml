@@ -15,7 +15,7 @@
     </profile>
     <beverages>
         <beverage>
-            <name>Tiquilla</name>
+            <name>Tequila</name>
             <capacity>400</capacity>
             <pumps>
                 <pump>
@@ -41,7 +41,7 @@
             </pumps>
         </beverage>
         <beverage>
-            <name>Drink#2</name>
+            <name>Wilde Hilde</name>
             <capacity>800</capacity>
             <pumps>
                 <pump>

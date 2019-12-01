@@ -1,6 +1,6 @@
 import tkinter
 from tkinter import ttk
-from Main.View.Frames.MainScreen.Profiles.center_grid import CenterGrid
+from Main.View.Frames.MainScreen.center_grid import CenterGrid
 def setup():
     root = tkinter.Tk()
     root.geometry('800x480')

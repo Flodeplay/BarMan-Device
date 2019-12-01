@@ -11,5 +11,6 @@ class BottomFrame(ttk.Frame):
         ttk.Style().configure('mainscreen.bottomFrame.TLabel',
                               background=ttk.Style().lookup("mainscreen.bottomFrame.TFrame", "background"),
                               font="Helvetica 15", foreground="white")
-        label = ttk.Label(self, text="Status", style="mainscreen.bottomFrame.TLabel")
-        label.pack(side="left")
+
+        #label = ttk.Label(self, text="Status", style="mainscreen.bottomFrame.TLabel")
+        #label.pack(side="left")

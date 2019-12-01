@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="barman@localhost" uuid="a81a94cd-d269-4838-b8b5-5bbe6e2486cd">
+    <data-source source="LOCAL" name="barman-db@localhost" uuid="a81a94cd-d269-4838-b8b5-5bbe6e2486cd">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/barman</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:3306/barman-db</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

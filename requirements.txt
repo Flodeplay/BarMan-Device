@@ -1,0 +1,7 @@
+Mysql.connector
+xml.etree
+pyqrcode
+PNG
+WIFI
+PIL
+

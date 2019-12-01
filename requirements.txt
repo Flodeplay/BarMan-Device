@@ -1,6 +1,6 @@
 Mysql.connector
 pyqrcode
-PNG
+pypng
 WIFI
-PIL
+pillow
 

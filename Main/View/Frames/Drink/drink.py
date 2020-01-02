@@ -1,4 +1,5 @@
-from tkinter import ttk, Canvas, Image, S
+from tkinter import *
+from tkinter import ttk
 from PIL import Image,ImageTk
 
 class Cupselection(ttk.Frame):
@@ -17,13 +18,12 @@ class Cupselection(ttk.Frame):
         ttk.Style().configure('cupselection.center.TFrame', background="#201F1E")
         ttk.Style().configure('cupselection.top.TFrame', background="#871352")
         topframe = ttk.Frame(self, height=120, width=800, style="cupselection.top.TFrame")
-        ttk.Label(topframe, text="Bitte Wähle eine Größe aus", style="cupselection.top.TLabel").place(x=400, y=60, anchor="center")
-        topframe.grid_propagate(0)
-        topframe.grid(row=0)
-
+        topframe.pack(side=TOP, expand=YES, fill=BOTH)
+        ttk.Label(topframe, text="Bitte Wähle eine Größe aus", style="cupselection.top.TLabel").pack(side=TOP,
+                                                                                                    expand=YES,
+                                                                                                    fill=BOTH)
         centerframe = CupselectionCenter(self, beverage, height=280, width=800, style="cupselection.center.TFrame")
-        centerframe.pack_propagate(0)
-        centerframe.grid(row=1)
+        centerframe.pack(side=BOTTOM, expand=YES, fill=BOTH)
         self.centerframe = centerframe
 
 
@@ -41,7 +41,9 @@ class CupselectionCenter(ttk.Frame):
             ttk.Style().configure('cupselection.center.cupsize.TFrame', background="#201F1E")
             frame = CupselectionProfile(self,size=size, type=type, width=160, height=200, style='cupselection.center.cupsize.TFrame')
             frame.grid_propagate(0)
-            frame.grid(column=index, row=0,pady=45, padx=20)
+            frame.grid(column=index, row=0)
+            Grid.columnconfigure(self, index, weight=1)
+            Grid.rowconfigure(self, 0, weight=1)
             index += 1
             self.profilesframes.append(frame)
 
@@ -84,23 +86,27 @@ class ProgressBar(ttk.Frame):
         ttk.Style().configure('progressbar.TLabel', background="#201F1E", font="Helvetica 20",
                               foreground="white", justify="center", anchor="center")
         ttk.Style().configure('progressbar.top.TFrame', background="#871352")
+        ttk.Style().configure('progressbar.bottom.TFrame', background="#201F1E")
         topframe = ttk.Frame(self, height=200, width=800, style="progressbar.top.TFrame")
-        ttk.Label(topframe, text="Dein Getränk wird gerade gemixt", style="progressbar.big.TLabel").place(x=400, y=70,
-                                                                                                      anchor="center")
-        ttk.Label(topframe, text="gleich ist es soweit :)", style="progressbar.small.TLabel").place(x=400, y=150,
-                                                                                                anchor="center")
-        topframe.grid_propagate(0)
-        topframe.grid(row=0)
+        ttk.Label(topframe, text="Dein Getränk wird gerade gemixt", style="progressbar.big.TLabel").pack(side=TOP,
+                                                                                                    expand=YES,
+                                                                                                    fill=BOTH)
+        ttk.Label(topframe, text="gleich ist es soweit :)", style="progressbar.small.TLabel").pack(side=BOTTOM,
+                                                                                                    expand=YES,
+                                                                                                    fill=BOTH)
 
-        ttk.Label(self, text="Dein Getränk: " + beverage.name +", "+str(cupsize)+"ml", style="progressbar.TLabel").place(x=400, y=350,
+        topframe.pack(side=TOP,expand=YES, fill=BOTH)
+        bottomframe = ttk.Frame(self, height=200, width=800,style="progressbar.bottom.TFrame")
+        bottomframe.pack(side=BOTTOM, expand=YES, fill=BOTH)
+        ttk.Label(bottomframe, text="Dein Getränk: " + beverage.name +", "+str(cupsize)+"ml", style="progressbar.TLabel").place(x=400, y=170,
                                                                                                        anchor="center")
         TROUGH_COLOR = '#201F1E'
         BAR_COLOR = '#871352'
         ttk.Style().configure("bar.Horizontal.TProgressbar", troughcolor=TROUGH_COLOR, bordercolor=TROUGH_COLOR,
                               background=BAR_COLOR, lightcolor=BAR_COLOR, darkcolor=BAR_COLOR)
-        self.progressbar = ttk.Progressbar(self, style="bar.Horizontal.TProgressbar", orient="horizontal", length=600,
+        self.progressbar = ttk.Progressbar(bottomframe, style="bar.Horizontal.TProgressbar", orient="horizontal", length=600,
                                            mode="determinate")
-        self.progressbar.place(x=400, y=250, anchor="center")
+        self.progressbar.place(x=400, y=100, anchor="center")
 
     def setprogress(self, value):
         self.progressbar["value"] = int(value)
@@ -119,12 +125,8 @@ class DrinkFinished(ttk.Frame):
                               foreground="white", justify="center", anchor="center")
         ttk.Style().configure('drinkfinished.top.TFrame', background="#871352")
         topframe = ttk.Frame(self, height=200, width=800, style="drinkfinished.top.TFrame")
-
-        ttk.Label(topframe, text="Dein Getränk ist fertig!", style="drinkfinished.big.TLabel").place(x=400, y=70,
-                                                                                             anchor="center")
-        #ttk.Label(topframe, text="", style="progressbar.small.TLabel").place(x=400, y=150, anchor="center")
-        topframe.grid_propagate(0)
-        topframe.grid(row=0)
-        ttk.Label(self, text="Dein Getränk: " +str(beverage.name) , style="drinkfinished.TLabel").place(x=400, y=300,
-                                                                                                       anchor="center")
+        ttk.Label(topframe, text="Dein Getränk ist fertig!", style="drinkfinished.big.TLabel").pack(side=TOP, expand=YES, fill=BOTH)
+        topframe.pack(side=TOP, expand=YES, fill=BOTH)
+        ttk.Label(self, text="Dein Getränk: " +str(beverage.name) , style="drinkfinished.TLabel").pack(side=BOTTOM, expand=YES, fill=BOTH)
+        Grid.columnconfigure(self, 0, weight=1)
 

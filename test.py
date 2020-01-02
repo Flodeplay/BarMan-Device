@@ -1,6 +1,11 @@
 import tkinter
-from Main.View.Frames.Drink.cupselection.cupsize import Cupseletion
+from tkinter import ttk
+from Main.View.Frames.Error.Error import Mix_Exception
 
 root = tkinter.Tk()
-Cupseletion(root, beverage=1, height=400, width=800).grid()
+ttk.Style().configure('error.TFrame', background="#201F1E")
+raise Mix_Exception("f")
 root.mainloop()
+
+
+main = []

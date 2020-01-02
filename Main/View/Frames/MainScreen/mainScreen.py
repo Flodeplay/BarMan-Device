@@ -9,21 +9,22 @@ class MainScreen(ttk.Frame):
     def __init__(self, parent, username, beverages, **options):
         super().__init__(parent, **options)
         self.init_content(username, beverages)
+        Grid.columnconfigure(self, 0, weight=1)
+        Grid.rowconfigure(self, 1, weight=1)
 
     def init_content(self,username, beverages):
         ttk.Style().configure('mainscreen.topframe.TFrame', background="#87014F")
         ttk.Style().configure('mainscreen.centerGrid.TFrame', background="#201F1E")
         ttk.Style().configure('mainscreen.bottomFrame.TFrame', background="#2E4147")
 
-        topframe = TopFrame(parent=self, username=username, width=800, height=50,padding=[10,0,0,0], style='mainscreen.topframe.TFrame')
-        topframe.pack_propagate(0)
-        topframe.grid(row=0)
+        topframe = TopFrame(parent=self, username=username,padding=[20,10,0,10], style='mainscreen.topframe.TFrame')
+        topframe.grid(row=0,sticky="nsew")
         self.topframe = topframe
 
-        bottomframe = BottomFrame(self, width=800, height=50,padding=[10,0,0,0],style='mainscreen.bottomFrame.TFrame')
-        bottomframe.pack_propagate(0)
-        bottomframe.grid(row=2)
-        self.bottomframe = bottomframe
+        # bottomframe = BottomFrame(self,padding=[10,0,0,0],style='mainscreen.bottomFrame.TFrame')
+        # bottomframe.pack_propagate(0)
+        # bottomframe.grid(row=2,sticky="nsew")
+        # self.bottomframe = bottomframe
 
         self.offset_x = 0
         canvas = Canvas(self, bg="#201F1E", width=800, height=300, bd=0, highlightthickness=0, relief='ridge')

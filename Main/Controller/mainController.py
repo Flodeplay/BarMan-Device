@@ -1,5 +1,6 @@
 from Main.View.application import Application
 from tkinter import ttk
+from tkinter import *
 from Main.Model.model import Model
 from Main.View.Frames.Startup.register.register import RegisterScreen
 from Main.View.Frames.MainScreen.mainScreen import MainScreen
@@ -29,7 +30,8 @@ class MainController:
 
     def __init_mainscreen(self):
             ttk.Style().configure('mainscreen.TFrame', background="#201F1E")
-            mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages, style="mainscreen.TFrame", height=400, width=800)
+            mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages, style="mainscreen.TFrame")
+            mainscreen.topframe.logout.bind("<Button-1>", self.logout)
             for frame in mainscreen.centergrid.profilesframes:
                 frame.bind("<Button-1>",
                                 lambda event, beverage=frame.beverage:
@@ -38,7 +40,6 @@ class MainController:
                     child.bind("<Button-1>",
                                lambda event, beverage=frame.beverage:
                                self.__init_cupselection(beverage))
-            mainscreen.grid_propagate(0)
             mainscreen.grid(row=0,column=0,sticky="nsew")
             self.root.frames["mainscreen"] = mainscreen
 
@@ -50,7 +51,7 @@ class MainController:
 
     def __init_progress(self, beverage, cupsize):
         ttk.Style().configure('progressbar.TFrame', background="#201F1E")
-        frame = ProgressBar(self.root,beverage=beverage,cupsize=cupsize, style="progressbar.TFrame", height=400, width=800)
+        frame = ProgressBar(self.root,beverage=beverage,cupsize=cupsize, style="progressbar.TFrame")
         frame.grid(row=0, column=0, sticky="nsew")
         frame.tkraise()
         return frame
@@ -96,3 +97,6 @@ class MainController:
         time.sleep(5)
         self.root.frames[frame].tkraise()
         drinkfinished.destroy()
+
+    def logout(self):
+        raise Exception("not implemted")

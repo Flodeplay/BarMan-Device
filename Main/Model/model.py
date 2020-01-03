@@ -12,8 +12,11 @@ class Model:
 
     def __load_content(self):
         if self.connector.connected:
-            self.login_from_db()
-            logging.info("Login from DB Complete")
+            try:
+                self.login_from_db()
+                logging.info("Login from DB Complete")
+            except:
+                self.user = None
         else:
             if self.config.getuser():
                 self.login_from_config()
@@ -46,7 +49,7 @@ class Model:
     def login_from_db(self):
         if self.connector.connected:
             self.device = self.connector.getdevice()
-            if self.device:
+            if self.device and self.device.userid:
                 self.user = self.connector.getuser()
                 if self.user:
                     self.profile = self.connector.getprofile()
@@ -55,7 +58,7 @@ class Model:
                 else:
                     raise Exception("No User Connected with this machine")
             else:
-                raise Exception("Internal Error")
+                raise Exception("No User Connected with this machine")
         else:
             raise Exception("Connection to DB could not be Established")
 
@@ -79,3 +82,18 @@ class Model:
             time.sleep(0.5)
         # todo implement GPIO Ports
         callback(args,beverage)
+
+    def login_new_user(self, callback):
+        logging.info("Creating new request for userdata")
+        if self.user:
+            if self.user.id != self.connector.getdevice().userid:
+                callback()
+            else:
+                time.sleep(3)
+                self.login_new_user(callback)
+        else:
+            if self.connector.getdevice().userid:
+                callback()
+            else:
+                time.sleep(3)
+                self.login_new_user(callback)

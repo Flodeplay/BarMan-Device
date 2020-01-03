@@ -36,6 +36,13 @@ class Model:
         self.profile = self.config.getProfile()
         self.pumps = self.config.getpumpconfiguration()
 
+    def generatePin(self):
+        import random, string
+        x = ''.join(random.choices(string.digits, k=6))
+        self.device.pin = x
+        self.config.setDevice(self.device)
+        self.connector.set_pin(self.device.pin)
+
     def login_from_db(self):
         if self.connector.connected:
             self.device = self.connector.getdevice()

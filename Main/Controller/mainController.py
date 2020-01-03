@@ -19,19 +19,14 @@ class MainController:
             self.__init_mainscreen()
         else:
             if self.model.connector.connected:
-                ttk.Style().configure('register.TFrame', background="#201F1E")
-                register = RegisterScreen(parent=self.root, key=self.model.key, pin=self.model.device.pin, style="register.TFrame", height=400, width=800)
-                register.leftpanel.refresh.config(command=self.registerlogin)
-                register.grid_propagate(0)
-                register.grid(row=0,column=0,sticky="nsew")
-                self.root.frames["register"] = register
+                self.__init_registerscreen()
             #else:
                 #todo implement errror screen
 
     def __init_mainscreen(self):
             ttk.Style().configure('mainscreen.TFrame', background="#201F1E")
             mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages, style="mainscreen.TFrame")
-            mainscreen.topframe.logout.bind("<Button-1>", self.logout)
+            mainscreen.topframe.logout.bind("<Button-1>", self.dologout)
             for frame in mainscreen.centergrid.profilesframes:
                 frame.bind("<Button-1>",
                                 lambda event, beverage=frame.beverage:
@@ -43,8 +38,18 @@ class MainController:
             mainscreen.grid(row=0,column=0,sticky="nsew")
             self.root.frames["mainscreen"] = mainscreen
 
+    def __init_registerscreen(self):
+        self.model.generatePin()
+        ttk.Style().configure('register.TFrame', background="#201F1E")
+        register = RegisterScreen(parent=self.root, key=self.model.key, pin=self.model.device.pin,
+                                  style="register.TFrame", height=400, width=800)
+        register.leftpanel.refresh.config(command=self.registerlogin)
+        register.grid_propagate(0)
+        register.grid(row=0, column=0, sticky="nsew")
+        self.root.frames["register"] = register
+
     def registerlogin(self):
-        self.model.login()
+        self.model.login_from_db()
         self.__init_mainscreen()
         frame = self.root.frames["mainscreen"]
         frame.tkraise()
@@ -98,5 +103,9 @@ class MainController:
         self.root.frames[frame].tkraise()
         drinkfinished.destroy()
 
-    def logout(self):
-        raise Exception("not implemted")
+    def dologout(self, arg):
+        #todo remove foreign key to user from db
+        if self.model.connector.connected:
+            self.__init_registerscreen()
+        # else:
+        # todo implement errror screen

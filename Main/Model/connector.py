@@ -28,6 +28,11 @@ class Connector:
             self.connected = False
             logging.warning("Connection to DB could not be established")
 
+    def set_pin(self,pin):
+        mycursor = self.conn.cursor()
+        mycursor.execute(
+            "UPDATE d_devices SET d_pin = "+pin+" WHERE d_key = "+self.device.key+";")
+
     def getdevice(self):
         mycursor = self.conn.cursor()
         mycursor.execute(

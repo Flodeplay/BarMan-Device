@@ -13,10 +13,10 @@ class Connector:
     def __init__(self, key):
         try:
             self.conn = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                passwd="",
-                database="barman-db"
+                host="e67103-mysql.services.easyname.eu",
+                user="u100372db2",
+                passwd=".2m4f3f9431s",
+                database="u100372db2"
             )
 
             if self.conn and self.conn.is_connected():

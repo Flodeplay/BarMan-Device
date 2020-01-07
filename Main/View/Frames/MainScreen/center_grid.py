@@ -32,7 +32,7 @@ class Profile(ttk.Frame):
                               foreground="white",justify="center", anchor="center")
         ttk.Style().configure('mainscreen.centerGrid.profile.small.TLabel', background="#871352", font="Helvetica 12",
                               foreground="white", justify="center", anchor="center")
-        label = ttk.Label(self, text=beverage.name, style="mainscreen.centerGrid.profile.TLabel")
+        label = ttk.Label(self, text=beverage.name, style="mainscreen.centerGrid.profile.TLabel", wraplength=180)
         label.grid(row=0, sticky="nsew", pady=(20, 10))
         ttk.Style().configure('mainscreen.centerGrid.profile.TSeparator', justify="center", anchor="center")
         ttk.Separator(self, style="mainscreen.centerGrid.profile.TSeparator").grid(row=1, sticky="nsew",padx=(10, 5), pady=(10, 20))

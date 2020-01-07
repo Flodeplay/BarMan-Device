@@ -7,6 +7,7 @@ from Main.View.Frames.MainScreen.mainScreen import MainScreen
 from Main.View.Frames.Drink.drink import *
 import threading
 import time
+from Main.View.Frames.Error.Error import Mix_Exception,ErrorScreen
 
 
 class MainController:
@@ -107,8 +108,12 @@ class MainController:
         drinkfinished.destroy()
 
     def dologout(self, arg):
-        # todo remove foreign key to user from db
-        if self.model.connector.connected:
-            self.__init_register()
-        # else:
-        # todo implement errror screen
+        try:
+            if self.model.connector.connected:
+                self.__init_register()
+            else:
+                raise Mix_Exception("Es besteht keine Verbindung zum Internet")
+        except:
+            ErrorScreen(self.root,sys.exc_info()[0], self.raise_frame, "mainscreen")
+
+

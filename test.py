@@ -1,11 +1,7 @@
-import tkinter
-from tkinter import ttk
-from Main.View.Frames.Error.Error import Mix_Exception
+import time
+import RPi.GPIO as GPIO
 
-root = tkinter.Tk()
-ttk.Style().configure('error.TFrame', background="#201F1E")
-raise Mix_Exception("f")
-root.mainloop()
-
-
-main = []
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+for i in range(10):
+    time.sleep(1)

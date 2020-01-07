@@ -7,3 +7,7 @@ GPIO.setup(17, GPIO.HIGH)
 for i in range(10):
     time.sleep(1)
 GPIO.setup(17, GPIO.LOW)
+for i in range(5):
+    time.sleep(5)
+exit()
+

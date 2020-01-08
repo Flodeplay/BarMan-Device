@@ -2,6 +2,7 @@ from Main.Model.connector import Connector
 from Main.Model.configuration import ConfigReader
 import time
 import logging
+import traceback
 
 class Model:
     def __init__(self):
@@ -67,7 +68,7 @@ class Model:
         if beverage:
             if cupsize:
                 for liquid in beverage.pumps:
-                    relation = (int(liquid.amount) / int(beverage.volume)) * int(cupsize)
+                    relation = (int(liquid.amount) / int(beverage.volume())) * int(cupsize)
                     relations[liquid.containerid] = relation
                 return relations
             else:
@@ -85,15 +86,22 @@ class Model:
 
     def login_new_user(self, callback):
         logging.info("Creating new request for userdata")
-        if self.user:
-            if self.user.id != self.connector.getdevice().userid:
-                callback()
+        try:
+            if self.user:
+                if self.user.id != self.connector.getdevice().userid:
+                    callback()
+                else:
+                    time.sleep(3)
+                    self.login_new_user(callback)
             else:
-                time.sleep(3)
-                self.login_new_user(callback)
-        else:
-            if self.connector.getdevice().userid:
-                callback()
-            else:
-                time.sleep(3)
-                self.login_new_user(callback)
+                if self.connector.getdevice().userid:
+                    callback()
+                else:
+                    time.sleep(3)
+                    self.login_new_user(callback)
+        except Exception as e:
+            traceback.print_exc()
+            print(e)
+            self.login_new_user(callback)
+
+

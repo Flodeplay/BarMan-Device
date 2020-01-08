@@ -1,7 +1,6 @@
 class Beverage:
-    def __init__(self, name, volume, pumps):
+    def __init__(self, name, pumps):
         self.name = name
-        self.volume = volume
         self.pumps = pumps
 
     def getingredients(self):
@@ -10,3 +9,11 @@ class Beverage:
             ingredients.append(ingredient.name)
         return ", ".join(ingredients)
 
+    def volume(self):
+        volume = 0
+        for pump in self.pumps:
+            volume += pump.amount
+        return volume
+
+    def caclsiszes(self):
+       return {"Small": int(self.volume()/3*2), "Medium": self.volume(), "Big": int(self.volume()/2*3)}

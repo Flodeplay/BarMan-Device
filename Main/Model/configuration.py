@@ -48,7 +48,7 @@ class ConfigReader:
                 pump = Liquidforbeverage(pumptree.find('containerID').text, pumptree.find('name').text,
                                          pumptree.find('amount').text)
                 pumps.append(pump)
-            beverage = Beverage(beveragetree.find('name').text, beveragetree.find('capacity').text, pumps)
+            beverage = Beverage(beveragetree.find('name').text, pumps)
             beverages.append(beverage)
         return beverages
 
@@ -59,7 +59,6 @@ class ConfigReader:
         for beverage in beverages:
             beverageelement = ET.SubElement(beveragescontainer, 'beverage')
             ET.SubElement(beverageelement, "name").text = str(beverage.name)
-            ET.SubElement(beverageelement, "capacity").text = str(beverage.volume)
             pumpcontainer = ET.SubElement(beverageelement, "pumps")
             for pump in pumpcontainer.findall('pump'):
                 pumpcontainer.remove(pump)

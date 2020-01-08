@@ -5,6 +5,7 @@ from Main.Model.model import Model
 from Main.View.Frames.Startup.register.register import RegisterScreen
 from Main.View.Frames.MainScreen.mainScreen import MainScreen
 from Main.View.Frames.Drink.drink import *
+from Main.View.Frames.Pump.pump import *
 import threading
 import time
 from Main.View.Frames.Error.Error import Mix_Exception,ErrorScreen
@@ -40,6 +41,7 @@ class MainController:
         mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages,
                                 style="mainscreen.TFrame")
         mainscreen.topframe.logout.bind("<Button-1>", self.dologout)
+        mainscreen.topframe.pumps.bind("<Button-1>",self.__init_pump_screen)
         for frame in mainscreen.centergrid.profilesframes:
             frame.bind("<Button-1>",
                        lambda event, beverage=frame.beverage:
@@ -77,6 +79,13 @@ class MainController:
                 child.bind("<Button-1>",
                            lambda event, beverage=beverage, cupsize=frame.size:
                            self.make_drink(beverage, cupsize))
+
+    def __init_pump_screen(self, arg):
+        ttk.Style().configure('pumpscreen.TFrame', background="#201F1E")
+        pumpscreen = Pumpsscreen(self.root, self.model.pumps, self.raise_frame, height=400, width=800, style="pumpscreen.TFrame")
+        pumpscreen.grid(row=0, column=0, sticky="nsew")
+        pumpscreen.tkraise()
+        return pumpscreen
 
     def __init_drink_finished(self, beverage):
         ttk.Style().configure('drinkfinished.TFrame', background="#201F1E")

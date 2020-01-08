@@ -35,7 +35,7 @@ class CupselectionCenter(ttk.Frame):
 
     def init_content(self, beverage):
         #Todo calc ratio
-        sizes = {"Small": 100, "Medium": 200, "Big": 300}
+        sizes = beverage.caclsiszes()
         index = 0
         for type, size in sizes.items():
             ttk.Style().configure('cupselection.center.cupsize.TFrame', background="#201F1E")
@@ -121,12 +121,12 @@ class DrinkFinished(ttk.Frame):
                               foreground="white", justify="center", anchor="center")
         ttk.Style().configure('drinkfinished.small.TLabel', background="#871352", font="Helvetica 20",
                               foreground="white", justify="center", anchor="center")
-        ttk.Style().configure('drinkfinished.TLabel', background="#201F1E", font="Helvetica 35",
+        ttk.Style().configure('drinkfinished.TLabel', background="#201F1E", font="Helvetica 30",
                               foreground="white", justify="center", anchor="center")
         ttk.Style().configure('drinkfinished.top.TFrame', background="#871352")
         topframe = ttk.Frame(self, height=200, width=800, style="drinkfinished.top.TFrame")
         ttk.Label(topframe, text="Dein Getränk ist fertig!", style="drinkfinished.big.TLabel").pack(side=TOP, expand=YES, fill=BOTH)
         topframe.pack(side=TOP, expand=YES, fill=BOTH)
-        ttk.Label(self, text="Dein Getränk: " +str(beverage.name) , style="drinkfinished.TLabel").pack(side=BOTTOM, expand=YES, fill=BOTH)
+        ttk.Label(self, text="Dein Getränk: " +str(beverage.name), style="drinkfinished.TLabel").pack(side=BOTTOM, expand=YES, fill=BOTH)
         Grid.columnconfigure(self, 0, weight=1)
 

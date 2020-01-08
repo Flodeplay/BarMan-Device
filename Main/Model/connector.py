@@ -85,12 +85,12 @@ class Connector:
     def getbeverages(self, p_id):
         self.conn.connect()
         mycursor = self.conn.cursor()
-        mycursor.execute("select bb.b_id,bb.b_name, bb.b_capacity from pb_profilebeverages inner join b_beverages bb on"
+        mycursor.execute("select bb.b_id,bb.b_name from pb_profilebeverages inner join b_beverages bb on"
                          + " pb_profilebeverages.pb_b_id = bb.b_id where pb_p_id =" + str(p_id))
         result = mycursor.fetchall()
         beverages = []
         for row in result:
-            beverages.append(Beverage(row[1], row[2], self.getpumpsforbeverages(row[0])))
+            beverages.append(Beverage(row[1], self.getpumpsforbeverages(row[0])))
         mycursor.close()
         self.conn.close()
         return beverages

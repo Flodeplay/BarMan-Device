@@ -5,24 +5,27 @@ from PIL import Image, ImageTk
 
 
 class Pumpsscreen(ttk.Frame):
-    def __init__(self, parent, pumps, callback, **options):
+    def __init__(self, parent, pumps, callback, arg, **options):
         super().__init__(parent, **options)
         Grid.columnconfigure(self, 0, weight=1)
         Grid.rowconfigure(self, 1, weight=1)
         ttk.Style().configure('pumpscreen.topframe.TFrame', background="#87014F")
         ttk.Style().configure('pumpscreen.bottomFrame.TFrame', background="#201F1E")
 
-        TopFrame(self,callback, padding=[20,10,0,10] ,style="pumpscreen.topframe.TFrame").grid(row=0,sticky="nsew")
+        TopFrame(self,callback,arg, padding=[20,10,0,10] ,style="pumpscreen.topframe.TFrame").grid(row=0,sticky="nsew")
         BottomFrame(self,pumps, style="pumpscreen.bottomFrame.TFrame").grid(row=1,sticky="nsew")
 
 class TopFrame(ttk.Frame):
-    def __init__(self, parent, callback, **options):
+    def __init__(self, parent, callback, arg, **options):
         super().__init__(parent, **options)
         ttk.Style().configure('pumps.topframe.TLabel', background="#87014F", font="Helvetica 18", foreground="white")
         logo = Image.open("images/chevron-left-solid.png")
         logo = logo.resize((17, 25), Image.ANTIALIAS)
         logo = ImageTk.PhotoImage(logo)
         button = Label(self, background="#87014F", image=logo)
+        button.bind("<Button-1>",
+                   lambda event, arg=arg:
+                   callback(arg))
         button.photo = logo
         button.pack(side="left")
 

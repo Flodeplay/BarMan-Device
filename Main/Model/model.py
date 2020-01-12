@@ -1,5 +1,6 @@
 from Main.Model.connector import Connector
 from Main.Model.configuration import ConfigReader
+from Main.Model.GPIO import *
 import time
 import logging
 import traceback
@@ -77,11 +78,14 @@ class Model:
             raise Exception("No Drink Configuration")
 
     def makedrink(self, beverage, progressscreen, callback, args):
-        progress = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-        for i in progress:
-            progressscreen.setprogress(i)
-            time.sleep(0.5)
-        # todo implement GPIO Ports
+        ports = [17,27,22,23]
+        progresss = 100/len(beverage.pumps)
+        #Relai
+        #17, 27, 22, 23
+        for pump in beverage.pumps:
+            acessPort(ports[pump.containerid-1], pump.amount)
+            progressscreen.setprogress(progresss*pump.containerid-1)
+
         callback(args,beverage)
 
     def login_new_user(self, callback):

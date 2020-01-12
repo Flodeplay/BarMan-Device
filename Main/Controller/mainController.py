@@ -82,7 +82,7 @@ class MainController:
 
     def __init_pump_screen(self, arg):
         ttk.Style().configure('pumpscreen.TFrame', background="#201F1E")
-        pumpscreen = Pumpsscreen(self.root, self.model.pumps, self.raise_frame, height=400, width=800, style="pumpscreen.TFrame")
+        pumpscreen = Pumpsscreen(self.root, self.model.pumps, self.raise_frame, arg="mainscreen", height=400, width=800, style="pumpscreen.TFrame")
         pumpscreen.grid(row=0, column=0, sticky="nsew")
         pumpscreen.tkraise()
         return pumpscreen

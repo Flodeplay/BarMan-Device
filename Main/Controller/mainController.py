@@ -100,7 +100,7 @@ class MainController:
             if cupsize:
                 ratio = self.model.calc_ratio(beverage, cupsize)
                 thread = threading.Thread(target=self.model.makedrink,
-                                          args=(beverage, progressscreen, self.finished_mix, "mainscreen"))
+                                          args=(beverage, progressscreen, self.finished_mix, "mainscreen", ratio))
                 thread.start()
             else:
                 raise Exception("No Cupsize Selected")

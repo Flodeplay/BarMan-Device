@@ -77,13 +77,14 @@ class Model:
         else:
             raise Exception("No Drink Configuration")
 
-    def makedrink(self, beverage, progressscreen, callback, args):
+    def makedrink(self, beverage, progressscreen, callback, args, amount):
         ports = [[17,20],[27,20],[22,18],[23,18]]
         progresss = 100/len(beverage.pumps)
         #Relai
         #17, 27, 22, 23
         for pump in beverage.pumps:
-            acessPort(ports[pump.containerid-1][0],(pump.amount/ports[pump.containerid-1][1]))
+            print(amount)
+            acessPort(ports[pump.containerid-1][0],(amount.get(pump.containerid)/ports[pump.containerid-1][1]))
             progressscreen.setprogress(progresss*pump.containerid-1)
 
         callback(args,beverage)

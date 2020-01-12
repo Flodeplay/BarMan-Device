@@ -38,8 +38,7 @@ class MainController:
 
     def __init_mainscreen(self):
         ttk.Style().configure('mainscreen.TFrame', background="#201F1E")
-        mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages,
-                                style="mainscreen.TFrame")
+        mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages, style="mainscreen.TFrame")
         mainscreen.topframe.logout.bind("<Button-1>", self.dologout)
         mainscreen.topframe.pumps.bind("<Button-1>",self.__init_pump_screen)
         for frame in mainscreen.centergrid.profilesframes:

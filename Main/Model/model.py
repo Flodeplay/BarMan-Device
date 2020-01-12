@@ -91,18 +91,20 @@ class Model:
 
     def login_new_user(self, callback):
         logging.info("Creating new request for userdata")
+        device = self.connector.getdevice()
+        print(device.userid, device.userprofile)
         try:
             if self.user:
-                if self.user.id != self.connector.getdevice().userid:
+                if self.user.id != device.userid and device.userprofile is not None:
                     callback()
                 else:
-                    time.sleep(3)
+                    time.sleep(5)
                     self.login_new_user(callback)
             else:
-                if self.connector.getdevice().userid:
+                if device.userid is not None and self.device.userprofile is not None:
                     callback()
                 else:
-                    time.sleep(3)
+                    time.sleep(5)
                     self.login_new_user(callback)
         except Exception as e:
             traceback.print_exc()

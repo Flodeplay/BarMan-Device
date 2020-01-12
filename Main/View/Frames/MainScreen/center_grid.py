@@ -18,6 +18,10 @@ class CenterGrid(ttk.Frame):
             frame = Profile(self, self.profiles[i], width=180, height=200, style='mainscreen.centerGrid.profile.TFrame')
             frame.grid_propagate(0)
             frame.grid(column=i, row=0,pady=45, padx=20)
+            Grid.columnconfigure(frame, 0, weight=1)
+            Grid.rowconfigure(frame, 0, weight=1)
+            Grid.columnconfigure(frame, 2, weight=1)
+            Grid.rowconfigure(frame, 2, weight=1)
             self.profilesframes.append(frame)
 
 
@@ -39,5 +43,5 @@ class Profile(ttk.Frame):
         #label = Label(self, text=beverage.name)
         #label.grid(row=2)
         #ttk.Separator(self).grid(row=3, sticky="nsew", pady=(20, 10))
-        label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=180)
-        label.grid(row=4, padx=(20, 20))
+        label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=160)
+        label.grid(row=4,pady=(0,20), padx=(20, 20))

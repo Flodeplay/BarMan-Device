@@ -25,7 +25,7 @@ class MainController:
 
     def __init_register(self):
         self.model.generatePin()
-        thread = threading.Thread(target=self.model.login_new_user, args=(self.registerlogin,))
+        thread = threading.Thread(daemon=YES, target=self.model.login_new_user, args=(self.registerlogin,))
         thread.start()
         if thread.is_alive():
             ttk.Style().configure('register.TFrame', background="#201F1E")
@@ -98,7 +98,7 @@ class MainController:
             if cupsize:
                 ratio = self.model.calc_ratio(beverage, cupsize)
                 thread = threading.Thread(target=self.model.makedrink,
-                                          args=(beverage, progressscreen, self.finished_mix, "mainscreen", ratio))
+                                          args=(beverage, progressscreen, self.finished_mix, "mainscreen", ratio), daemon=YES)
                 thread.start()
             else:
                 raise Exception("No Cupsize Selected")

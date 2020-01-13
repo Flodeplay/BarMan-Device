@@ -41,5 +41,5 @@ class Profile(ttk.Frame):
         label.grid(row=0, sticky="nsew", pady=(20, 10))
         ttk.Style().configure('mainscreen.centerGrid.profile.TSeparator', justify="center", anchor="center")
         ttk.Separator(self, style="mainscreen.centerGrid.profile.TSeparator").grid(row=1, sticky="nsew",padx=(10, 5), pady=(10, 20))
-        label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=160)
+        label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=145)
         label.grid(row=4,pady=(0,20), padx=(20, 20))

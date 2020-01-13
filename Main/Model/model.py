@@ -43,7 +43,8 @@ class Model:
 
     def generatePin(self):
         import random, string
-        x = ''.join(random.choices(string.digits, k=6))
+        x = ''.join(random.choice(string.digits) for _ in range(6))
+        print(x)
         self.device.pin = x
         self.config.setDevice(self.device)
         self.connector.set_pin(self.device.pin)
@@ -78,7 +79,7 @@ class Model:
             raise Exception("No Drink Configuration")
 
     def makedrink(self, beverage, progressscreen, callback, args, amount):
-        ports = [[17,20],[27,20],[22,18],[23,18]]
+        ports = [[17,30],[27,30],[22,30],[23,30]]
         progresss = 100/len(beverage.pumps)
         #Relai
         #17, 27, 22, 23

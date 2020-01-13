@@ -27,7 +27,7 @@ class MainScreen(ttk.Frame):
         # self.bottomframe = bottomframe
 
         self.offset_x = 0
-        canvas = Canvas(self, bg="#201F1E", width=800, height=300, bd=0, highlightthickness=0, relief='ridge')
+        canvas = Canvas(self, bg="#201F1E", bd=0, highlightthickness=0, relief='ridge')
         ttk.Style().configure('mainscreen.centerGrid.TFrame', background="#201F1E")
         frame_left = CenterGrid(canvas, beverages, style='mainscreen.centerGrid.TFrame')
         self.centergrid = frame_left
@@ -79,7 +79,6 @@ class MainScreen(ttk.Frame):
             canvas_frame = canvas.create_window((4, 4), window=frame_left, anchor="center")
             canvas.bind('<Configure>', lambda event, canvas_frame=canvas_frame: chat_width(event, canvas_frame))
         else:
-            canvas.pack_propagate(0)
-            canvas.grid(row=1)
+            canvas.grid(row=1,sticky="nsew")
             frame_left.pack()
 

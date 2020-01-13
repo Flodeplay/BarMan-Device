@@ -1,9 +1,9 @@
 <data>
     <device>
         <key>193101163196</key>
-        <pin>976716</pin>
+        <pin>465858</pin>
         <userid>4</userid>
-        <userprofile>17</userprofile>
+        <userprofile>2</userprofile>
     </device>
     <user>
         <id>1</id>
@@ -14,7 +14,7 @@
         <name>Basic</name>
     </profile>
     <beverages>
-        <beverage><name>Tequila</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Vodka</name><amount>100</amount></pump><pump><containerID>4</containerID><name>Orangensaft</name><amount>100</amount></pump></pumps></beverage><beverage><name>Fritzi</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Vodka</name><amount>100</amount></pump><pump><containerID>3</containerID><name>Mangosaft</name><amount>100</amount></pump><pump><containerID>4</containerID><name>Orangensaft</name><amount>100</amount></pump></pumps></beverage><beverage><name>Hugo</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>70</amount></pump><pump><containerID>2</containerID><name>Vodka</name><amount>77</amount></pump><pump><containerID>3</containerID><name>Mangosaft</name><amount>80</amount></pump><pump><containerID>4</containerID><name>Orangensaft</name><amount>85</amount></pump></pumps></beverage></beverages>
+        <beverage><name>Tequila</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Vodka</name><amount>100</amount></pump><pump><containerID>4</containerID><name>Orangensaft</name><amount>100</amount></pump></pumps></beverage><beverage><name>Fritzi</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Vodka</name><amount>100</amount></pump><pump><containerID>3</containerID><name>Mangosaft</name><amount>100</amount></pump><pump><containerID>4</containerID><name>Orangensaft</name><amount>100</amount></pump></pumps></beverage></beverages>
     <pumps>
         <pump><name>Orangensaft</name><containerID>4</containerID></pump><pump><name>Mangosaft</name><containerID>3</containerID></pump><pump><name>Vodka</name><containerID>2</containerID></pump><pump><name>Wasser</name><containerID>1</containerID></pump></pumps>
 </data>

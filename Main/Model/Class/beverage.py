@@ -12,7 +12,7 @@ class Beverage:
     def volume(self):
         volume = 0
         for pump in self.pumps:
-            volume += pump.amount
+            volume += int(pump.amount)
         return volume
 
     def caclsiszes(self):

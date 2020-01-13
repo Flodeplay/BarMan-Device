@@ -27,12 +27,10 @@ class MainController:
         self.model.generatePin()
         thread = threading.Thread(target=self.model.login_new_user, args=(self.registerlogin,))
         thread.start()
-        if thread.isAlive():
+        if thread.is_alive():
             ttk.Style().configure('register.TFrame', background="#201F1E")
             register = RegisterScreen(parent=self.root, key=self.model.key, pin=self.model.device.pin,
                                       style="register.TFrame", height=400, width=800)
-
-            register.grid_propagate(0)
             register.grid(row=0, column=0, sticky="nsew")
             self.root.frames["register"] = register
 
@@ -57,6 +55,7 @@ class MainController:
         self.__init_mainscreen()
         frame = self.root.frames["mainscreen"]
         frame.tkraise()
+        self.root.update()
 
     def __init_progress(self, beverage, cupsize):
         ttk.Style().configure('progressbar.TFrame', background="#201F1E")
@@ -121,7 +120,7 @@ class MainController:
                 self.__init_register()
             else:
                 raise Mix_Exception("Es besteht keine Verbindung zum Internet")
-        except:
-            ErrorScreen(self.root,sys.exc_info()[0], self.raise_frame, "mainscreen")
+        except BaseException as e:
+            ErrorScreen(self.root,e, self.raise_frame, "mainscreen")
 
 

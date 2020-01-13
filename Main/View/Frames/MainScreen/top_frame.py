@@ -19,12 +19,12 @@ class TopFrame(ttk.Frame):
         logo = ImageTk.PhotoImage(logo)
         button = Label(frame, background="#87014F",image=logo)
         button.photo = logo
-        button.grid(row=0,column=2, padx=(10,0))
+        #button.grid(row=0,column=2, padx=(10,0))
         self.pumps = button
         label = ttk.Label(frame, text="|", style="mainscreen.topframe.TLabel", padding=[10, 0])
-        label.grid(row=0, column=3)
+        #label.grid(row=0, column=3)
         settings_image = Image.open("images/sign-out-alt-solid.png")
-        settings_image = settings_image.resize((30, 20), Image.ANTIALIAS)
+        settings_image = settings_image.resize((40, 30), Image.ANTIALIAS)
         settings_logo = ImageTk.PhotoImage(settings_image)
         settings = Label(frame, background="#87014F", image=settings_logo)
         settings.photo = settings_logo

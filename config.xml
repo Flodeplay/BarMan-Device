@@ -6,15 +6,15 @@
         <userprofile>2</userprofile>
     </device>
     <user>
-        <id>1</id>
-        <name>Florian</name>
+        <id>9</id>
+        <name>Manfred</name>
     </user>
     <profile>
         <id>1</id>
         <name>Basic</name>
     </profile>
     <beverages>
-        <beverage><name>Himbeersaft</name><pumps><pump><containerID>1</containerID><name>Wasser</name><amount>100</amount></pump><pump><containerID>2</containerID><name>Himbeersaft</name><amount>100</amount></pump></pumps></beverage></beverages>
+        <beverage><name>DiviMix</name><pumps><pump><containerID>1</containerID><name>Apfelsaft</name><amount>150</amount></pump><pump><containerID>4</containerID><name>Wasser</name><amount>100</amount></pump></pumps></beverage><beverage><name>Apfelsaft</name><pumps><pump><containerID>1</containerID><name>Apfelsaft</name><amount>253</amount></pump></pumps></beverage><beverage><name>WassOrange</name><pumps><pump><containerID>2</containerID><name>Orangennektar</name><amount>150</amount></pump><pump><containerID>4</containerID><name>Wasser</name><amount>200</amount></pump></pumps></beverage><beverage><name>Eistee</name><pumps><pump><containerID>3</containerID><name>Eistee</name><amount>200</amount></pump></pumps></beverage></beverages>
     <pumps>
-        <pump><name>Himbeersaft</name><containerID>2</containerID></pump><pump><name>Wasser</name><containerID>1</containerID></pump></pumps>
+        </pumps>
 </data>

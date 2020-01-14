@@ -31,7 +31,8 @@ class MainScreen(ttk.Frame):
         ttk.Style().configure('mainscreen.centerGrid.TFrame', background="#201F1E")
         frame_left = CenterGrid(canvas, beverages, style='mainscreen.centerGrid.TFrame')
         self.centergrid = frame_left
-        if (len(beverages) * (180 + 40) + 20) > 800:
+        #(len(beverages) * (180 + 40) + 20) > 800
+        if not True:
             vertscroll = Scrollbar(canvas, orient='horizontal', command=canvas.xview())
             canvas.configure(xscrollcommand=vertscroll.set)
 

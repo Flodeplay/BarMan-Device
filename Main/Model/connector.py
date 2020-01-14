@@ -17,6 +17,7 @@ class Connector:
                 user="u100372db2",
                 passwd=".2m4f3f9431s",
                 database="u100372db2"
+
             )
 
             if self.conn and self.conn.is_connected():

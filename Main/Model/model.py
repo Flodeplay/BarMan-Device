@@ -79,7 +79,7 @@ class Model:
             raise Exception("No Drink Configuration")
 
     def makedrink(self, beverage, progressscreen, callback, args, amount):
-        ports = [[17,26.67],[27,25],[22,20],[23,18.3]]
+        ports = [[17,30],[27,30],[22,25],[23,25]]
         progresss = 100/len(beverage.pumps)
         #Relai
         #17, 27, 22, 23

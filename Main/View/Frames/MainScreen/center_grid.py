@@ -15,7 +15,7 @@ class CenterGrid(ttk.Frame):
     def init_content(self):
         for i in range(len(self.profiles)):
             ttk.Style().configure('mainscreen.centerGrid.profile.TFrame', background="#871352")
-            frame = Profile(self, self.profiles[i], width=180, height=200, style='mainscreen.centerGrid.profile.TFrame')
+            frame = Profile(self, self.profiles[i], width=150, height=200, style='mainscreen.centerGrid.profile.TFrame')
             frame.grid_propagate(0)
             frame.grid(column=i, row=0,pady=45, padx=20)
             Grid.columnconfigure(frame, 0, weight=1)
@@ -33,7 +33,7 @@ class Profile(ttk.Frame):
         self.init_content(beverage)
 
     def init_content(self, beverage):
-        ttk.Style().configure('mainscreen.centerGrid.profile.TLabel', background="#871352", font="Helvetica 20",
+        ttk.Style().configure('mainscreen.centerGrid.profile.TLabel', background="#871352", font="Helvetica 15",
                               foreground="white",justify="center", anchor="center")
         ttk.Style().configure('mainscreen.centerGrid.profile.small.TLabel', background="#871352", font="Helvetica 12",
                               foreground="white", justify="center", anchor="center")

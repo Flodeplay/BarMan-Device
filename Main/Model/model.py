@@ -85,7 +85,7 @@ class Model:
         #17, 27, 22, 23
         for pump in beverage.pumps:
             print(amount)
-            acessPort(ports[pump.containerid-1][0],(amount.get(pump.containerid)/ports[pump.containerid-1][1]))
+            acessPort(ports[int(pump.containerid)-1][0],(amount.get(int(pump.containerid))/ports[int(pump.containerid)-1][1]))
             progressscreen.setprogress(progresss*pump.containerid-1)
 
         callback(args,beverage)

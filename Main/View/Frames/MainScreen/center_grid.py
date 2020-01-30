@@ -31,6 +31,11 @@ class Profile(ttk.Frame):
         super().__init__(parent, **options)
         self.beverage = beverage
         self.init_content(beverage)
+        Grid.grid_columnconfigure(self, 0, weight=1)
+        Grid.grid_columnconfigure(self,1, weight=1)
+        Grid.grid_columnconfigure(self,2, weight=1)
+        Grid.grid_rowconfigure(self,0, weight=1)
+        Grid.grid_rowconfigure(self,2, weight=1)
 
     def init_content(self, beverage):
         ttk.Style().configure('mainscreen.centerGrid.profile.TLabel', background="#871352", font="Helvetica 15",
@@ -40,6 +45,6 @@ class Profile(ttk.Frame):
         label = ttk.Label(self, text=beverage.name, style="mainscreen.centerGrid.profile.TLabel", wraplength=180)
         label.grid(row=0, sticky="nsew", pady=(20, 10))
         ttk.Style().configure('mainscreen.centerGrid.profile.TSeparator', justify="center", anchor="center")
-        ttk.Separator(self, style="mainscreen.centerGrid.profile.TSeparator").grid(row=1, sticky="nsew",padx=(10, 5), pady=(10, 20))
+        ttk.Separator(self, style="mainscreen.centerGrid.profile.TSeparator").grid(column=0, row=1, sticky="nsew",padx=(10, 10), pady=(10, 20))
         label = ttk.Label(self, text=beverage.getingredients(), style="mainscreen.centerGrid.profile.small.TLabel", wraplength=145)
-        label.grid(row=4,pady=(0,20), padx=(20, 20))
+        label.grid(row=2,sticky="nsew",pady=(0,20), padx=(20, 20))

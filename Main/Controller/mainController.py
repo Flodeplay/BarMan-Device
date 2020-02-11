@@ -38,7 +38,7 @@ class MainController:
         ttk.Style().configure('mainscreen.TFrame', background="#201F1E")
         mainscreen = MainScreen(self.root, username=self.model.user.name, beverages=self.model.profile.beverages, style="mainscreen.TFrame")
         mainscreen.topframe.logout.bind("<Button-1>", self.dologout)
-        mainscreen.topframe.pumps.bind("<Button-1>",self.__init_pump_screen)
+        mainscreen.topframe.cleanButton.bind("<Button-1>",self.__init_cleanMode)
         for frame in mainscreen.centergrid.profilesframes:
             frame.bind("<Button-1>",
                        lambda event, beverage=frame.beverage:
@@ -78,6 +78,13 @@ class MainController:
                            lambda event, beverage=beverage, cupsize=frame.size:
                            self.make_drink(beverage, cupsize))
 
+    def __init_cleanMode(self, *args):
+        progressscreen = self.__init_progress(None, None)
+        thread = threading.Thread(target=self.model.doCleaning,
+                                  args=(progressscreen, self.finished_mix, "mainscreen"),
+                                  daemon=YES)
+        thread.start()
+
     def __init_pump_screen(self, arg):
         ttk.Style().configure('pumpscreen.TFrame', background="#201F1E")
         pumpscreen = Pumpsscreen(self.root, self.model.pumps, self.raise_frame, arg="mainscreen", height=400, width=800, style="pumpscreen.TFrame")
@@ -107,6 +114,7 @@ class MainController:
 
     def raise_frame(self, frame):
         self.root.frames[frame].tkraise()
+
 
     def finished_mix(self, frame, beverage):
         drinkfinished = self.__init_drink_finished(beverage=beverage)

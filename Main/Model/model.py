@@ -90,6 +90,10 @@ class Model:
 
         callback(args,beverage)
 
+    def doCleaning(self, progressscreen, callback, args):
+        cleanPumps()
+        callback(args,None)
+
     def login_new_user(self, callback):
         logging.info("Creating new request for userdata")
         device = self.connector.getdevice()

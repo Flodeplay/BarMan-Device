@@ -76,7 +76,6 @@ class ProgressBar(ttk.Frame):
 
     def __init__(self, parent, beverage,cupsize, **options):
         super().__init__(parent, **options)
-        self.init_content(beverage, cupsize)
 
     def init_content(self, beverage,cupsize):
         ttk.Style().configure('progressbar.big.TLabel', background="#871352", font="Helvetica 35",
@@ -88,9 +87,15 @@ class ProgressBar(ttk.Frame):
         ttk.Style().configure('progressbar.top.TFrame', background="#871352")
         ttk.Style().configure('progressbar.bottom.TFrame', background="#201F1E")
         topframe = ttk.Frame(self, height=200, width=800, style="progressbar.top.TFrame")
-        ttk.Label(topframe, text="Dein Getränk wird gerade gemixt", style="progressbar.big.TLabel").pack(side=TOP,
+        if beverage and cupsize:
+            ttk.Label(topframe, text="Dein Getränk wird gerade gemixt", style="progressbar.big.TLabel").pack(side=TOP,
                                                                                                     expand=YES,
                                                                                                     fill=BOTH)
+        else:
+            ttk.Label(topframe, text="Dein BarMan wird gerade gereinigt", style="progressbar.big.TLabel").pack(side=TOP,
+                                                                                                             expand=YES,
+                                                                                                             fill=BOTH)
+
         ttk.Label(topframe, text="gleich ist es soweit :)", style="progressbar.small.TLabel").pack(side=BOTTOM,
                                                                                                     expand=YES,
                                                                                                     fill=BOTH)
@@ -98,7 +103,8 @@ class ProgressBar(ttk.Frame):
         topframe.pack(side=TOP,expand=YES, fill=BOTH)
         bottomframe = ttk.Frame(self, height=200, width=800,style="progressbar.bottom.TFrame")
         bottomframe.pack(side=BOTTOM, expand=YES, fill=BOTH)
-        ttk.Label(bottomframe, text="Dein Getränk: " + beverage.name +", "+str(cupsize)+"ml", style="progressbar.TLabel").place(x=400, y=170,
+        if beverage and cupsize:
+            ttk.Label(bottomframe, text="Dein Getränk: " + beverage.name +", "+str(cupsize)+"ml", style="progressbar.TLabel").place(x=400, y=170,
                                                                                                        anchor="center")
         TROUGH_COLOR = '#201F1E'
         BAR_COLOR = '#871352'
@@ -125,8 +131,20 @@ class DrinkFinished(ttk.Frame):
                               foreground="white", justify="center", anchor="center")
         ttk.Style().configure('drinkfinished.top.TFrame', background="#871352")
         topframe = ttk.Frame(self, height=200, width=800, style="drinkfinished.top.TFrame")
-        ttk.Label(topframe, text="Dein Getränk ist fertig!", style="drinkfinished.big.TLabel").pack(side=TOP, expand=YES, fill=BOTH)
-        topframe.pack(side=TOP, expand=YES, fill=BOTH)
-        ttk.Label(self, text="Dein Getränk: " +str(beverage.name), style="drinkfinished.TLabel").pack(side=BOTTOM, expand=YES, fill=BOTH)
-        Grid.columnconfigure(self, 0, weight=1)
 
+        if beverage:
+            ttk.Label(topframe, text="Dein Getränk ist fertig!", style="drinkfinished.big.TLabel").pack(side=TOP,
+                                                                                                        expand=YES,
+                                                                                                        fill=BOTH)
+            topframe.pack(side=TOP, expand=YES, fill=BOTH)
+            ttk.Label(self, text="Dein Getränk: " +str(beverage.name), style="drinkfinished.TLabel").pack(side=BOTTOM, expand=YES, fill=BOTH)
+            Grid.columnconfigure(self, 0, weight=1)
+        else:
+            ttk.Label(topframe, text="Der BarMan ist nun gereinigt!", style="drinkfinished.big.TLabel").pack(side=TOP,
+                                                                                                        expand=YES,
+                                                                                                        fill=BOTH)
+            topframe.pack(side=TOP, expand=YES, fill=BOTH)
+            ttk.Label(self, text="Überprüfe ob alles Sauber ist", style="drinkfinished.TLabel").pack(side=BOTTOM,
+                                                                                                           expand=YES,
+                                                                                                           fill=BOTH)
+            Grid.columnconfigure(self, 0, weight=1)
